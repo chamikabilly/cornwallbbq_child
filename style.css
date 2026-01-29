@@ -1,0 +1,18 @@
+/*
+ * Theme Name: Miheli Solutions Child
+ * Theme URI: https://example.com/miheli-solutions-child
+ * Description: Child theme for Miheli Solutions
+ * Author: Your Name
+ * Author URI: https://example.com
+ * Template: miheli-solutions
+ * Version: 1.0.0
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: miheli-solutions-child
+ * Domain Path: /languages
+ */
+
+/* Import parent theme styles */
+@import url('../miheli-solutions/style.css');
+
+/* Child theme custom styles go here */
