@@ -18,13 +18,13 @@
 }
 
 /* Hide Disabled Navigation Buttons */
-.swiper-button-prev.swiper-button-disabled.swiper-button-lock,
-.swiper-button-next.swiper-button-disabled.swiper-button-lock {
+.swiper-button-prev.shop-cats-swiper-button-prev.swiper-button-disabled.swiper-button-lock,
+.swiper-button-next.shop-cats-swiper-button-next.swiper-button-disabled.swiper-button-lock {
     display: none;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
+.swiper-button-prev.shop-cats-swiper-button-prev,
+.swiper-button-next.shop-cats-swiper-button-next {
     width: 30px;
     height: 50px;
     background-color: var(--color-deep-red);
@@ -33,8 +33,8 @@
     justify-content: center;
 }
 
-.swiper-button-prev svg,
-.swiper-button-next svg {
+.swiper-button-prev.shop-cats-swiper-button-prev svg,
+.swiper-button-next.shop-cats-swiper-button-next svg {
     width: 15px;
     height: 15px;
     fill: var(--color-bright-orange);
@@ -85,8 +85,8 @@
 }
 
 /* Navigation Buttons */
-.shop-cats-swiper .swiper-button-prev,
-.shop-cats-swiper .swiper-button-next {
+.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev,
+.shop-cats-swiper .swiper-button-next.shop-cats-swiper-button-next {
     width: 40px;
     height: 40px;
     background-color: transparent;
@@ -104,32 +104,32 @@
 }
 
 /* Previous Button */
-.shop-cats-swiper .swiper-button-prev {
+.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev {
     left: 0;
 }
 
 /* Next Button */
-.shop-cats-swiper .swiper-button-next {
+.shop-cats-swiper .swiper-button-next.shop-cats-swiper-button-next {
     right: 0;
 }
 
 /* Arrow Icons (Swiper default ::after) */
-.shop-cats-swiper .swiper-button-prev::after,
-.shop-cats-swiper .swiper-button-next::after {
+.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev::after,
+.shop-cats-swiper .swiper-button-next.shop-cats-swiper-button-next::after {
     font-size: 20px;
     color: #ffffff;
     font-weight: bold;
 }
 
 /* Arrow Hover State */
-.shop-cats-swiper .swiper-button-prev:hover::after,
-.shop-cats-swiper .swiper-button-next:hover::after {
+.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev:hover::after,
+.shop-cats-swiper .swiper-button-next.shop-cats-swiper-button-next:hover::after {
     color: #FFAC42;
 }
 
 /* Disabled Arrow State */
-.shop-cats-swiper .swiper-button-prev.swiper-button-disabled::after,
-.shop-cats-swiper .swiper-button-next.swiper-button-disabled::after {
+.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev.swiper-button-disabled::after,
+.shop-cats-swiper .swiper-button-next.shop-cats-swiper-button-next.swiper-button-disabled::after {
     color: rgba(255, 255, 255, 0.3);
 }
 

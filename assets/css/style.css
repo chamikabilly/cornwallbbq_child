@@ -5,7 +5,11 @@
 
 /* Import WooCommerce Shop Archive Styles */
 @import url('shop-archive.css');
+@import url('single-blog.css');
+@import url('single-product.css');
+@import url('product-gallery.css');
+@import url('product-tabs.css');
+@import url('checkout.css');
+@import url('cart.css');
 
 /* Add your custom child theme styles below */
-
-

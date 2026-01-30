@@ -1,0 +1,242 @@
+.single-product-images {
+    width: 100%;
+    height: 100%;
+    padding: 0 28px;
+    position: relative;
+}
+
+.single-product-images .woocommerce-product-gallery {
+    width: 100% !important;
+    height: 100%;
+    max-height: 700px;
+    margin: 0 auto;
+}
+
+.single-product-images .woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image {
+    background: linear-gradient(45deg, #c9c9c908, #a9a2a296);
+    padding: 20px 30px;
+    border: 2px solid #ffffff59;
+    border-radius: 30px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.woocommerce-product-gallery__wrapper .swiper.thumbs-swiper {
+    margin-top: 30px;
+    padding: 10px 30px;
+}
+
+.woocommerce-product-gallery__wrapper .swiper.thumbs-swiper .swiper-slide img {
+    height: 100%;
+    width: fit-content;
+    object-fit: contain;
+    object-position: center;
+}
+
+.woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image img {
+    width: 400px !important;
+    height: auto;
+}
+
+.single-product-images span.onsale {
+    min-height: 50px;
+    min-width: 50px;
+    padding: 0px 12px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-weight: 700;
+    position: absolute;
+    line-height: 0;
+    top: 11px;
+    left: 40px;
+    margin: 0;
+    border-radius: 15px 0;
+    box-shadow: 0 0 11px #c45f5f8a;
+    border: 2px solid #7d25259e;
+    background-color: #ffc107;
+    color: #7d2525;
+    font-size: 15px;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-family-poppins);
+    justify-content: center;
+}
+
+.woocommerce-product-gallery__wrapper .swiper.thumbs-swiper .swiper-slide {
+    border: 2px solid #d34b4b00;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(45deg, #b25a5a49, #b25a5a49);
+    box-shadow: 0px 0px 3px rgb(182 190 205 / 57%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.woocommerce-product-gallery__wrapper .swiper.thumbs-swiper .swiper-slide.active {
+    border: 2px solid #d34b4b;
+    box-shadow: 1px 0px 7px #b84848b8;
+    background: linear-gradient(45deg, #8d7b7b6e, #7d5858a3);
+}
+
+/* Swiper prev/next buttons - modern theme style */
+.woocommerce-product-gallery__wrapper .swiper-button-next,
+.woocommerce-product-gallery__wrapper .swiper-button-prev {
+    position: absolute;
+    top: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.96);
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(15, 20, 30, 0.12);
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        opacity 0.12s ease;
+    z-index: 20;
+}
+
+.woocommerce-product-gallery__wrapper .swiper-button-next::after,
+.woocommerce-product-gallery__wrapper .swiper-button-prev::after {
+    font-size: 14px;
+    color: inherit;
+}
+
+.woocommerce-product-gallery__wrapper .swiper-button-next:hover,
+.woocommerce-product-gallery__wrapper .swiper-button-prev:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(15, 20, 30, 0.18);
+}
+
+/* Position left/right for thumbs nav specifically */
+.woocommerce-product-gallery__wrapper .thumbs-swiper .swiper-button-prev {
+    left: 8px;
+}
+
+.woocommerce-product-gallery__wrapper .thumbs-swiper .swiper-button-next {
+    right: 8px;
+}
+
+
+/* Keyboard focus styles */
+.woocommerce-product-gallery__wrapper .swiper-button-next:focus,
+.woocommerce-product-gallery__wrapper .swiper-button-prev:focus {
+    outline: 3px solid rgba(255, 172, 66, 0.18);
+}
+
+.product-thumb {
+    transition:
+        box-shadow 0.12s ease,
+        transform 0.12s ease;
+}
+
+.product-thumb.active img {
+    box-shadow: 0 10px 30px rgba(15, 20, 30, 0.12);
+}
+
+/* Hide theme's built-in trigger/search icon inside the gallery (we use our own overlay) */
+.woocommerce-product-gallery__trigger,
+.woocommerce-product-gallery__image .zoom,
+.woocommerce-product-gallery__image .product-search-icon {
+    display: none !important;
+}
+
+/* Zoom overlay button (appears on hover) */
+.product-zoom-button {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(7, 10, 15, 0.08);
+    border: 0;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.12s ease;
+    z-index: 30;
+}
+
+.woocommerce-product-gallery__image:hover .product-zoom-button {
+    opacity: 1;
+}
+
+/* Bootstrap modal theming to match theme */
+#photoswipe-bootstrap-modal .modal-content {
+    background: linear-gradient(180deg, #7d7c7c, #78707078);
+    border-radius: 14px;
+    border: 2px solid rgb(255 255 255 / 82%);
+    box-shadow: 0px 0px 14px 6px #ffffff3d;
+}
+
+#photoswipe-bootstrap-modal .modal-body {
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#photoswipe-bootstrap-modal .photoswipe-modal-inner img {
+    max-width: 700px;
+    max-height: 72vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Modal navigation buttons style */
+#photoswipe-bootstrap-modal .modal-footer .btn-light {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 24px rgba(11, 16, 30, 0.06);
+    margin-right: 8px;
+}
+
+#photoswipe-bootstrap-modal .modal-footer .btn-light:hover {
+    transform: translateY(-3px);
+}
+
+/* Make sure modal sits above everything */
+#photoswipe-bootstrap-modal {
+    z-index: 999999;
+}
+
+
+/* ===========================
+   Responsive Design
+   =========================== */
+@media (max-width: 1200px) {
+    .single-product-images {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .single-product-images .woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image {
+            height: 400px;
+    }
+}
+
+/* Smaller buttons on very small screens */
+@media (max-width: 480px) {
+
+    .woocommerce-product-gallery__wrapper .swiper-button-next,
+    .woocommerce-product-gallery__wrapper .swiper-button-prev {
+        width: 36px;
+        height: 36px;
+        top: 8px;
+    }
+}

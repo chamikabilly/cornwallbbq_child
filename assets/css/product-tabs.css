@@ -1,0 +1,228 @@
+/* Modern product tabs (Bootstrap 5 accordion) */
+
+.product-tabs-section {
+    margin-top: 30px;
+}
+
+.product-tabs-accordion {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #212320;
+    border: 1px solid rgba(255, 214, 161, 0.12);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.product-tab-item {
+    border: 0;
+    background: transparent;
+}
+
+.product-tabs-accordion .accordion-button {
+    background: #212320;
+    color: #FFD6A1;
+    font-weight: 600;
+    padding: 18px 22px;
+    border: 0;
+    box-shadow: none;
+}
+
+.product-tabs-accordion .accordion-button::after {
+    filter: invert(88%) sepia(35%) saturate(434%) hue-rotate(1deg) brightness(105%) contrast(95%);
+}
+
+.product-tabs-accordion .accordion-button:not(.collapsed) {
+    background: #D4A331;
+    color: #ffffff;
+}
+
+.product-tabs-accordion .accordion-button:focus {
+    box-shadow: 0 0 0 3px rgba(255, 214, 161, 0.25);
+}
+
+.product-tabs-accordion .accordion-collapse {
+    background: #212320 !important;
+}
+
+/* Ensure visibility toggles correctly when accordion is open */
+.product-tabs-accordion .accordion-collapse.show {
+    display: block !important;
+}
+
+.product-tabs-accordion .accordion-collapse:not(.show) {
+    display: none !important;
+}
+
+.product-tabs-accordion .accordion-body {
+    background: #212320 !important;
+    color: #FFD6A1 !important;
+    padding: 24px 22px 26px;
+    border-top: 1px solid rgba(255, 214, 161, 0.12);
+}
+
+.product-tabs-accordion .accordion-body a {
+    color: #FFD6A1;
+}
+
+.product-tabs-accordion .accordion-body a:hover {
+    color: #D4A331;
+}
+
+/* Ensure inner content is visible (tables, lists, paragraphs) */
+.product-tabs-accordion .accordion-body * {
+    color: #FFD6A1 !important;
+}
+
+/* Keep visible even if other CSS sets opacity/height */
+.product-tabs-accordion .accordion-collapse.show {
+    visibility: visible !important;
+    height: auto !important;
+    opacity: 1 !important;
+}
+
+.product-tabs-accordion .accordion-body table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-tabs-accordion .accordion-body table th,
+.product-tabs-accordion .accordion-body table td {
+    border-bottom: 1px solid rgba(255, 214, 161, 0.15);
+    padding: 8px 6px;
+}
+
+/* Ratings/inputs inside tabs */
+.product-tabs-accordion .comment-form input,
+.product-tabs-accordion .comment-form textarea {
+    background: #ffffff;
+    color: #212320 !important;
+    border: 1px solid rgba(125, 37, 37, 0.25);
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+
+.product-tabs-accordion .comment-form input:focus,
+.product-tabs-accordion .comment-form textarea:focus {
+    border-color: #D4A331;
+    box-shadow: 0 0 0 3px rgba(212, 163, 49, 0.2);
+}
+
+/* Star ratings in reviews tab */
+.product-tabs-accordion .star-rating,
+.product-tabs-accordion .star-ratings {
+    display: inline-flex !important;
+    gap: 4px;
+    align-items: center;
+    overflow: visible !important;
+    position: relative !important;
+    font-size: 0 !important;
+    /* Hide any text fallback */
+}
+
+.product-tabs-accordion .star-rating .star,
+.product-tabs-accordion .star-ratings .star {
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    flex-shrink: 0;
+}
+
+.product-tabs-accordion #reviews .star-rating {
+    color: #D4A331 !important;
+    height: auto !important;
+    line-height: 1 !important;
+}
+
+/* Hide the default ::before pseudo element that WooCommerce uses for stars */
+.product-tabs-accordion .star-rating::before {
+    display: none !important;
+}
+
+.product-tabs-accordion .star-rating strong {
+    display: none;
+    /* Hide the rating text */
+}
+
+.product-tabs-accordion .comment-form-rating .stars {
+    display: flex;
+    gap: 6px;
+}
+
+.product-tabs-accordion .comment-form-rating .stars a {
+    font-size: 18px;
+    text-decoration: none;
+    color: rgba(255, 214, 161, 0.3);
+    transition: color 0.2s ease;
+}
+
+.product-tabs-accordion .comment-form-rating .stars a:hover,
+.product-tabs-accordion .comment-form-rating .stars a.active {
+    color: #D4A331 !important;
+}
+
+.woocommerce #review_form #respond p {
+    margin: 0 0 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.woocommerce #review_form #respond .comment-form-cookies-consent {
+    flex-direction: row;
+}
+
+.product-tabs-accordion .star-rating {
+    left: -100px !important;
+}
+
+/* Buttons inside tabs - match add-to-cart style */
+.product-tabs-accordion .button,
+.product-tabs-accordion button[type="submit"],
+.product-tabs-accordion input[type="submit"] {
+    padding: 14px 28px !important;
+    background-color: var(--color-deep-red) !important;
+    color: var(--color-white) !important;
+    border: 2px solid transparent !important;
+    border-radius: 30px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    cursor: pointer !important;
+    transition: all 0.3s ease;
+    font-family: var(--font-family-poppins);
+}
+
+.product-tabs-accordion .button:hover,
+.product-tabs-accordion button[type="submit"]:hover,
+.product-tabs-accordion input[type="submit"]:hover {
+    background-color: transparent !important;
+    border-color: var(--color-bright-orange) !important;
+    color: var(--color-bright-orange) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 172, 66, 0.3);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .product-tabs-accordion .accordion-button {
+        padding: 16px 18px;
+        font-size: 15px;
+    }
+
+    .product-tabs-accordion .accordion-body {
+        padding: 18px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 500px) {
+    .woocommerce #reviews #comments ol.commentlist li .comment-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-tabs-accordion .star-rating {
+        left: 0px !important;
+        top: -6px;
+    }
+}

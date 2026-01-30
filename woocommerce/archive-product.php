@@ -32,8 +32,8 @@ if (is_product_category()) {
                 }
                 ?>
             </div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev shop-cats-swiper-button-prev"></div>
+            <div class="swiper-button-next shop-cats-swiper-button-next"></div>
         </div>
 
         <!-- Price filter -->

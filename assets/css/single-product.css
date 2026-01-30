@@ -13,79 +13,6 @@
 }
 
 
-/* Product Images */
-.single-product-images {
-    position: relative;
-}
-
-.single-product-images .woocommerce-product-gallery {
-    position: relative;
-}
-
-.single-product-images .woocommerce-product-gallery__wrapper {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    overflow: hidden;
-    padding: 20px;
-}
-
-.single-product-images .woocommerce-product-gallery__image {
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-.single-product-images img {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-}
-
-.single-product-images .woocommerce-product-gallery__image:hover img {
-    transform: scale(1.05);
-}
-
-.single-product-images .flex-control-thumbs {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-    list-style: none;
-    padding: 0;
-}
-
-.single-product-images .flex-control-thumbs li {
-    flex: 1;
-    max-width: 100px;
-}
-
-.single-product-images .flex-control-thumbs img {
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: border-color 0.3s ease;
-}
-
-.single-product-images .flex-control-thumbs img:hover,
-.single-product-images .flex-control-thumbs .flex-active img {
-    border-color: var(--color-bright-orange);
-}
-
-/* Sale Badge */
-.single-product-images .onsale {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 10;
-    background: var(--color-bright-orange);
-    color: var(--color-dark-black);
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: 700;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(255, 172, 66, 0.4);
-}
-
 /* Product Summary */
 .single-product-summary {
     padding: 20px 0;
@@ -104,8 +31,18 @@
 .single-product-summary .woocommerce-product-rating {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+.single-product-summary .star-ratings {
+    display: inline-flex;
+    gap: 4px;
+    margin: 0;
+}
+
+.single-product-summary .star-ratings .star {
+    display: inline-block;
 }
 
 .single-product-summary .star-rating {
@@ -127,7 +64,7 @@
 .single-product-summary .price {
     font-size: 36px;
     font-weight: 700;
-    color: var(--color-bright-orange);
+    color: var(--color-bright-orange) !important;
     margin-bottom: 25px;
     font-family: var(--font-family-poppins);
 }
@@ -195,24 +132,24 @@
 .single-product-summary .single_add_to_cart_button {
     flex: 1;
     min-width: 200px;
-    padding: 18px 40px;
-    background: var(--color-deep-red);
-    color: var(--color-white);
-    border: 2px solid transparent;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: 700;
+    padding: 18px 40px !important;
+    background-color: var(--color-deep-red) !important;
+    color: var(--color-white) !important;
+    border: 2px solid transparent !important;
+    border-radius: 30px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: all 0.3s ease;
     font-family: var(--font-family-poppins);
 }
 
 .single-product-summary .single_add_to_cart_button:hover {
-    background: transparent;
-    border-color: var(--color-bright-orange);
-    color: var(--color-bright-orange);
+    background-color: transparent !important;
+    border-color: var(--color-bright-orange) !important;
+    color: var(--color-bright-orange) !important;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 172, 66, 0.3);
 }
@@ -451,6 +388,20 @@
     font-size: 24px;
 }
 
+.single-product-summary .variations td, .single-product-summary .variations th {
+    padding: 10px 15px 10px 0;
+    display: flex;
+    vertical-align: middle;
+    color: var(--color-white);
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.woocommerce div.product form.cart .variations select{
+    background-color: #482d2d !important;
+    color: #ffc107 !important;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -474,6 +425,11 @@
 
     .single-product-summary .price {
         font-size: 30px;
+    }
+
+
+    .single-product-layout {
+        padding: 0 20px;
     }
 }
 
