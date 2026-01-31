@@ -1,0 +1,710 @@
+/* My Account - Modern Dashboard Styles */
+/* Palette uses Bootstrap variables to inherit site colors */
+.woocommerce-account {
+  --ma-primary: var(--bs-primary);
+  --ma-primary-rgb: var(--bs-primary-rgb);
+  --ma-success: var(--bs-success);
+  --ma-success-rgb: var(--bs-success-rgb);
+  --ma-warning: var(--bs-warning);
+  --ma-warning-rgb: var(--bs-warning-rgb);
+  --ma-muted: #6b7280;
+  --ma-card-bg: #ffffff;
+  --ma-card-border: #eaeaea;
+  --ma-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Hide default WooCommerce My Account sidebar & page meta */
+.woocommerce-MyAccount-navigation {
+  display: none !important;
+}
+.woocommerce-MyAccount-content {
+  width: 100%;
+  max-width: 1250px;
+  position: relative;
+  left: 1%;
+  transform: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.14) 100%
+  );
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  padding: 1.25rem;
+  padding-bottom: 4rem;
+  margin-bottom: 3rem;
+  /* external gap above footer */
+}
+.entry-title,
+.page-title,
+.post-edit-link {
+  display: none !important;
+}
+
+.my-account-wrapper {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.my-account-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.my-account-header .title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #ffffff !important;
+}
+
+.my-account-header .btn {
+  border-radius: 10px;
+}
+.my-account-header .btn + .btn {
+  margin-left: 0.5rem;
+}
+
+.my-account-header > div:last-child {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Inline actions vs dropdown (default: show inline, hide dropdown) */
+.my-account-header .account-actions-inline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.my-account-header .account-actions-dropdown {
+  display: none;
+}
+
+/* Flex-based dashboard layout */
+.dashboard-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dashboard-grid .card-kpi {
+  flex: 1 1 calc(25% - 1rem);
+}
+
+.card-kpi {
+  background: var(--ma-card-bg);
+  border: 1px solid var(--ma-card-border);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  box-shadow: var(--ma-shadow);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-kpi .icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(var(--ma-primary-rgb), 0.08);
+  color: var(--ma-primary);
+  font-size: 1.25rem;
+}
+
+.card-kpi .meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-kpi .label {
+  font-size: 0.85rem;
+  color: var(--ma-muted);
+}
+
+.card-kpi .value {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.section {
+  margin-top: 2rem;
+}
+
+.section .section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: #ffffff !important;
+}
+
+.table-modern {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--ma-card-bg);
+  border: 1px solid var(--ma-card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--ma-shadow);
+}
+
+.table-modern th,
+.table-modern td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table-modern thead th {
+  background: #fafafa;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--ma-muted);
+}
+
+.table-modern tbody tr:hover {
+  background: #fcfcfc;
+}
+
+.status-badge {
+  display: flex;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid #eaeaea;
+}
+
+.status-completed {
+  background: rgba(var(--ma-success-rgb), 0.12);
+  color: var(--ma-success);
+  border-color: rgba(var(--ma-success-rgb), 0.35);
+}
+.status-processing {
+  background: rgba(var(--ma-primary-rgb), 0.12);
+  color: var(--ma-primary);
+  border-color: rgba(var(--ma-primary-rgb), 0.35);
+}
+.status-pending {
+  background: rgba(var(--ma-warning-rgb), 0.14);
+  color: var(--ma-warning);
+  border-color: rgba(var(--ma-warning-rgb), 0.4);
+}
+.status-cancelled {
+  background: #f1f5f9;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+/* Edit Account form */
+.account-form {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 1.5rem 0 0;
+  box-shadow: none;
+}
+.account-form-header {
+  margin-bottom: 1rem;
+}
+.account-form-title {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+.account-form-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.25rem;
+}
+
+.account-form .form-group {
+  margin-bottom: 1rem;
+}
+.account-form label {
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #ffffff;
+}
+.account-form input,
+.account-form select {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  caret-color: var(--ma-primary);
+  padding: 0.65rem 0.9rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.account-form input::placeholder,
+.account-form select::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.account-form input:focus,
+.account-form select:focus {
+  border-color: var(--ma-primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--ma-primary-rgb), 0.25);
+  outline: 0;
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.account-form .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1rem;
+}
+.account-form .required {
+  color: #ff4d4f;
+}
+
+/* Flexify columns instead of grid */
+.woocommerce-account .col-md-6 {
+  flex: 1 1 calc(50% - 0.5rem);
+  max-width: 50%;
+}
+
+.account-form .btn-primary {
+  border-radius: 10px;
+  background-color: var(--ma-primary);
+  border-color: var(--ma-primary);
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  box-shadow: none;
+}
+.account-form .btn-primary:hover {
+  filter: brightness(1.05);
+}
+.account-form .btn-primary:focus {
+  box-shadow: none;
+}
+.account-form .form-group small.text-muted {
+  color: rgba(255, 255, 255, 0.75);
+}
+.account-form .form-group {
+  gap: 0.25rem;
+}
+
+.account-form fieldset {
+  border: none;
+  padding-top: 0.5rem;
+}
+.account-form legend {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Notices on account pages */
+.woocommerce-message,
+.woocommerce-error,
+.woocommerce-info {
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--ma-card-border);
+  background: var(--ma-card-bg);
+  box-shadow: var(--ma-shadow);
+}
+.woocommerce-message {
+  border-color: rgba(var(--ma-success-rgb), 0.4);
+}
+.woocommerce-error {
+  border-color: #ef4444;
+}
+.woocommerce-info {
+  border-color: rgba(var(--ma-primary-rgb), 0.35);
+}
+
+/* Manage Orders admin table */
+.manage-orders-toolbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.manage-orders-table .status-select {
+  min-width: 160px;
+}
+
+.manage-orders-table .action-cell {
+  white-space: nowrap;
+}
+
+/* My Orders actions: hide Pay/Cancel, style View */
+.woocommerce-orders-table .woocommerce-button.button.pay,
+.woocommerce-orders-table .woocommerce-button.button.cancel {
+  display: none !important;
+}
+.woocommerce-orders-table .woocommerce-button.button.view {
+  border-radius: 12px;
+  padding: 0.45rem 0.85rem;
+  font-weight: 600;
+  background-color: var(--ma-primary);
+  border: 1px solid var(--ma-primary);
+  color: #fff;
+  box-shadow: none;
+}
+
+.woocommerce-orders-table .woocommerce-button.button.view:hover {
+  filter: brightness(1.06);
+}
+
+.woocommerce-orders-table .woocommerce-button.button.view:focus {
+  box-shadow: none;
+}
+
+/* My Orders actions styling */
+.woocommerce-button.button {
+  border-radius: 12px;
+  padding: 0.45rem 0.85rem;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.woocommerce-button.button.view {
+  background-color: var(--ma-primary);
+  border: 1px solid var(--ma-primary);
+  color: #fff;
+}
+.woocommerce-button.button.view:hover {
+  filter: brightness(1.06);
+}
+.woocommerce-button.button.view:focus {
+  box-shadow: none;
+}
+
+.woocommerce-button.button.cancel {
+  background-color: rgba(var(--ma-warning-rgb), 0.12);
+  border: 1px solid rgba(var(--ma-warning-rgb), 0.45);
+  color: var(--ma-warning);
+}
+.woocommerce-button.button.cancel:hover {
+  filter: brightness(1.05);
+}
+.woocommerce-button.button.cancel:focus {
+  box-shadow: none;
+}
+
+/* Override WooCommerce core layout floats to keep dashboard centered */
+.woocommerce-account .woocommerce-MyAccount-content {
+  float: none;
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  clear: both;
+  left: 1%;
+  margin-bottom: 3rem;
+}
+
+/* Responsive tweaks for viewports up to 1400px */
+@media (max-width: 1400px) {
+  .woocommerce-account .woocommerce-MyAccount-content {
+    width: 100%;
+    max-width: 1070px;
+    margin: 0 auto;
+    clear: both;
+    left: 1%;
+    margin-bottom: 3rem;
+  }
+  /* Keep 4 KPI cards in a single row */
+  .dashboard-grid .card-kpi {
+    flex: 0 0 calc(25% - 1rem);
+  }
+
+  /* Slightly tighter header and sizing */
+  .my-account-header {
+    gap: 0.75rem;
+  }
+  .my-account-header .title {
+    font-size: 1.75rem;
+  }
+
+  /* Compact table cell padding for better fit */
+  .table-modern th,
+  .table-modern td {
+    padding: 0.75rem 0.9rem;
+  }
+
+  /* Subtle icon size reduction in KPIs */
+  .card-kpi .icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.15rem;
+  }
+}
+
+/* Responsive tweaks for viewports up to 1200px */
+@media (max-width: 1200px) {
+  .woocommerce-account .woocommerce-MyAccount-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    clear: both;
+    left: 2%;
+    margin-bottom: 3rem;
+  }
+
+  /* Keep KPI cards in one row (4 columns) */
+  .dashboard-grid .card-kpi {
+    flex: 0 0 calc(25% - 1rem);
+  }
+
+  /* Slightly tighter spacing and sizes */
+  .my-account-header {
+    gap: 0.6rem;
+  }
+  .my-account-header .title {
+    font-size: 1.6rem;
+  }
+
+  .table-modern th,
+  .table-modern td {
+    padding: 0.7rem 0.85rem;
+  }
+
+  .card-kpi .icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.05rem;
+  }
+}
+
+/* Responsive tweaks for viewports up to 992px */
+@media (max-width: 992px) {
+  .woocommerce-account .woocommerce-MyAccount-content {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    clear: both;
+    left: 0%;
+    margin-bottom: 3rem;
+  }
+
+  /* Show KPI cards in two columns for readability */
+  .dashboard-grid .card-kpi {
+    flex: 0 0 calc(50% - 1rem);
+  }
+
+  /* Stack form columns */
+  .woocommerce-account .col-md-6 {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  /* Slightly tighter header and table spacing */
+  .my-account-header {
+    gap: 0.5rem;
+  }
+  .my-account-header .title {
+    font-size: 1.45rem;
+  }
+
+  .table-modern th,
+  .table-modern td {
+    padding: 0.65rem 0.8rem;
+  }
+
+  .card-kpi .icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+/* Responsive tweaks for viewports up to 768px */
+@media (max-width: 768px) {
+  .woocommerce-account .woocommerce-MyAccount-content {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    left: 0;
+    margin-bottom: 3rem;
+  }
+
+  /* One KPI per row for small screens */
+  .dashboard-grid {
+    gap: 0.75rem;
+  }
+  .dashboard-grid .card-kpi {
+    flex: 0 0 100%;
+  }
+
+  /* Compact spacing */
+  .card-kpi {
+    padding: 0.9rem;
+    gap: 0.75rem;
+  }
+  .card-kpi .icon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+
+  /* Header wraps neatly */
+  .my-account-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .my-account-header .title {
+    font-size: 1.35rem;
+  }
+
+  /* Table padding tighter */
+  .table-modern th,
+  .table-modern td {
+    padding: 0.6rem 0.75rem;
+  }
+  .my-account-header > div:last-child {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+    justify-content: flex-start;
+    white-space: nowrap;
+  }
+  .my-account-header > div:last-child .btn {
+    flex: 0 0 auto;
+  }
+  .my-account-header .btn {
+    padding: 0.38rem 0.6rem;
+    font-size: 0.9rem;
+  }
+  .my-account-header .btn + .btn {
+    margin-left: 0.35rem;
+  }
+  .woocommerce-account .woocommerce-Price-amount,
+  .amount {
+    width: 100%;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+/* Responsive tweaks for viewports up to 576px */
+@media (max-width: 576px) {
+  .woocommerce-account .woocommerce-MyAccount-content {
+    width: 100%;
+    max-width: 535px;
+    margin: 0 auto;
+    left: 0;
+    margin-bottom: 3rem;
+  }
+
+  /* KPI cards: keep single column, tighten spacing */
+  .dashboard-grid {
+    gap: 0.65rem;
+  }
+  .card-kpi {
+    padding: 0.8rem;
+    gap: 0.65rem;
+  }
+  .card-kpi .icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+
+  /* Header switches to dropdown on small screens */
+  .my-account-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+  .my-account-header .account-actions-inline {
+    display: none;
+  }
+  .my-account-header .account-actions-dropdown {
+    display: block;
+  }
+  .my-account-header .btn {
+    padding: 0.36rem 0.55rem;
+    font-size: 0.88rem;
+  }
+  .account-actions-dropdown .dropdown-menu {
+    min-width: 12rem;
+  }
+
+  /* Table padding tighter for narrow screens */
+  .table-modern th,
+  .table-modern td {
+    padding: 0.55rem 0.7rem;
+  }
+}
+
+/* Extra-small phones: up to 414px */
+@media (max-width: 414px) {
+  .woocommerce-account .woocommerce-MyAccount-content {
+    width: 100%;
+    max-width: 373px;
+    margin: 0 auto;
+    left: 0;
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+    overflow: visible; /* ensure dropdowns are not clipped */
+  }
+
+  .my-account-header {
+    gap: 0.4rem;
+  }
+  .my-account-header .title {
+    font-size: 1.2rem;
+  }
+  .my-account-header .btn {
+    padding: 0.32rem 0.5rem;
+    font-size: 0.84rem;
+  }
+  .my-account-header .account-actions-dropdown {
+    width: 100%;
+  }
+  .account-actions-dropdown .btn.dropdown-toggle {
+    width: 100%;
+    text-align: left;
+  }
+  .account-actions-dropdown .dropdown-menu {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .dashboard-grid {
+    gap: 0.6rem;
+  }
+  .card-kpi {
+    padding: 0.7rem;
+    gap: 0.6rem;
+  }
+  .card-kpi .icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+  .card-kpi .value {
+    font-size: 1.15rem;
+  }
+
+  .table-modern th,
+  .table-modern td {
+    padding: 0.5rem 0.65rem;
+  }
+  .table-modern thead th {
+    font-size: 0.72rem;
+  }
+  .status-badge {
+    font-size: 0.7rem;
+  }
+}
