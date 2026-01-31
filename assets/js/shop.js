@@ -66,7 +66,7 @@
 
         // Initialize active slide on page load
         initializeActiveSlide();
-        console.log('Initialized active slide for category:', currentCategory);
+        // console.log('Initialized active slide for category:', currentCategory);
 
         function applyFilters(page){
             var $form = $('#shop-price-filter');
