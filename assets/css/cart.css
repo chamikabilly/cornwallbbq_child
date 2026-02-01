@@ -1159,8 +1159,9 @@ input[type="number"].qty {
         width: 100%;
         text-align: right;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: stretch;
+        justify-content: flex-end;
     }
 
     .cart-items-table tbody td::before {

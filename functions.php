@@ -107,14 +107,6 @@ function miheli_child_theme_enqueue_styles()
 
     // Cart page styles and scripts (only on cart page)
     if (is_cart()) {
-        // Cart CSS styling
-        wp_enqueue_style(
-            'miheli-cart-css',
-            get_stylesheet_directory_uri() . '/assets/css/cart.css',
-            array('bootstrap-css'),
-            _S_VERSION
-        );
-
         // Cart notifications system
         wp_enqueue_script(
             'miheli-cart-notifications',
@@ -133,14 +125,6 @@ function miheli_child_theme_enqueue_styles()
 
     // Checkout page styles and scripts (only on checkout page)
     if (is_checkout()) {
-        // Checkout CSS styling
-        wp_enqueue_style(
-            'miheli-checkout-css',
-            get_stylesheet_directory_uri() . '/assets/css/checkout.css',
-            array('bootstrap-css'),
-            _S_VERSION
-        );
-
         // Checkout interactions (optional)
         wp_enqueue_script(
             'miheli-checkout-js',
@@ -188,9 +172,8 @@ function miheli_override_woocommerce_templates() {
         return;
     }
 
-    // For cart page specifically, we need to load our wrapper
-    if (is_cart()) {
-        // Set the template to use our woocommerce.php wrapper
+    // For cart and checkout pages, ensure child templates load first
+    if (is_cart() || is_checkout()) {
         add_filter('woocommerce_locate_template', 'miheli_locate_woocommerce_template', 10, 3);
     }
 }
@@ -200,17 +183,41 @@ add_action('wp_loaded', 'miheli_override_woocommerce_templates');
  * Locate WooCommerce templates from child theme first
  */
 function miheli_locate_woocommerce_template($template, $template_name, $template_path) {
-    // Check if we're on the cart page
-    if (is_cart() && strpos($template_name, 'cart') !== false) {
-        $child_template = get_stylesheet_directory() . '/woocommerce/' . $template_name;
-        
-        if (file_exists($child_template)) {
-            return $child_template;
+    if (is_cart() || is_checkout()) {
+        $is_cart_template = strpos($template_name, 'cart') !== false;
+        $is_checkout_template = strpos($template_name, 'checkout') !== false;
+
+        if ($is_cart_template || $is_checkout_template) {
+            $child_template = get_stylesheet_directory() . '/woocommerce/' . $template_name;
+
+            if (file_exists($child_template)) {
+                return $child_template;
+            }
         }
     }
-    
+
     return $template;
 }
+
+/**
+ * Force classic checkout template when the checkout block is used
+ * so the child theme template (form-checkout.php) renders.
+ */
+function miheli_force_classic_checkout_content($content) {
+    if (!function_exists('is_checkout') || !is_checkout() || is_admin()) {
+        return $content;
+    }
+
+    if (function_exists('has_block')) {
+        $has_checkout_block = has_block('woocommerce/checkout', $content) || has_block('woocommerce/checkout-block', $content);
+        if ($has_checkout_block) {
+            return '[woocommerce_checkout]';
+        }
+    }
+
+    return $content;
+}
+add_filter('the_content', 'miheli_force_classic_checkout_content', 8);
 
 /**
  * Ensure WooCommerce cart and checkout pages use our wrapper template
