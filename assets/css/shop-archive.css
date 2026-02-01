@@ -534,6 +534,14 @@
         padding: 10px;
         font-size: 12px;
     }
+
+    .product-prize .woocommerce-Price-amount{
+        width: unset;
+        text-align: right;
+        display: inline-block;
+        text-decoration: none;
+    }
+    
 }
 
 @media (max-width: 600px) {
@@ -547,5 +555,36 @@
         margin: 10% auto;
         width: 95%;
         padding: 20px;
+    }
+}
+
+/* Product Sale Badge */
+.product-sale-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    padding: 8px 15px;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    animation: badgePulse 2s infinite;
+}
+
+.product-sale-badge .sale-text {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-family: var(--font-family-poppins);
+    text-transform: uppercase;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
     }
 }

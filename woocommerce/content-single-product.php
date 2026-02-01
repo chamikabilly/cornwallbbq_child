@@ -165,6 +165,15 @@ global $product;
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </div>
+                                        <?php
+                                        if ($related_product->is_on_sale()) {
+                                        ?>
+                                            <div class="product-sale-badge">
+                                                <span class="sale-text">Sale</span>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                     <div class="product-content-holder ">
                                         <h6 class="product-title"><?php echo esc_html($related_product->get_name()); ?></h6>
