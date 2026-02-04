@@ -106,8 +106,6 @@ $orders = wc_get_orders($args);
                         </td>
                         <td class="action-cell">
                             <button type="button" class="btn btn-sm btn-primary js-update-status">Update</button>
-                            <a class="btn btn-sm btn-outline-secondary"
-                                href="<?php echo esc_url($order->get_view_order_url()); ?>" target="_blank">View</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

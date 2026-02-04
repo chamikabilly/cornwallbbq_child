@@ -20,7 +20,6 @@ do_action('woocommerce_before_edit_account_form');
         <div class="account-actions-inline">
             <a class="btn btn-primary"
                 href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>">Dashboard</a>
-            <a class="btn btn-primary" href="<?php echo esc_url(wc_get_endpoint_url('orders')); ?>">View Orders</a>
             <a class="btn btn-primary" href="<?php echo esc_url(wc_get_endpoint_url('edit-account')); ?>">Account
                 Details</a>
             <a class="btn btn-primary js-confirm-logout" href="<?php echo esc_url(wc_logout_url()); ?>">Log out</a>
@@ -33,8 +32,6 @@ do_action('woocommerce_before_edit_account_form');
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item"
                         href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>">Dashboard</a></li>
-                <li><a class="dropdown-item" href="<?php echo esc_url(wc_get_endpoint_url('orders')); ?>">View
-                        Orders</a></li>
                 <li><a class="dropdown-item" href="<?php echo esc_url(wc_get_endpoint_url('edit-account')); ?>">Account
                         Details</a></li>
                 <li><a class="dropdown-item js-confirm-logout" href="<?php echo esc_url(wc_logout_url()); ?>">Log

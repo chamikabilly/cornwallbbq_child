@@ -24,10 +24,11 @@ if (is_product_category()) {
                     'taxonomy' => 'product_cat',
                     'hide_empty' => true,
                 ));
-                echo '<a href="' . esc_url(get_post_type_archive_link('product')) . '"><div class="swiper-slide active" data-slug="">All</div></a>';
+                // Slides must be direct children of .swiper-wrapper
+                echo '<a class="swiper-slide active" data-slug="" href="' . esc_url(get_post_type_archive_link('product')) . '">All</a>';
                 if (!is_wp_error($terms)) {
                     foreach ($terms as $term) {
-                        echo '<a href="' . esc_url(get_term_link($term)) . '"><div class="swiper-slide" data-slug="' . esc_attr($term->slug) . '"> ' . esc_html($term->name) . '</div></a>';
+                        echo '<a class="swiper-slide" data-slug="' . esc_attr($term->slug) . '" href="' . esc_url(get_term_link($term)) . '">' . esc_html($term->name) . '</a>';
                     }
                 }
                 ?>
@@ -38,17 +39,20 @@ if (is_product_category()) {
 
         <!-- Price filter -->
         <form id="shop-price-filter" class="shop-price-filter my-5 text-light">
-            <span class="filter-label mx-2 text-uppercase"><i class="fa-solid fa-arrow-down-wide-short mx-1"></i> Price Filter</span>
+            <span class="filter-label mx-2 text-uppercase"><i class="fa-solid fa-arrow-down-wide-short mx-1"></i> Price
+                Filter</span>
             <div class="d-flex align-items-center gap-2">
-                <label for="min_price" class="text-uppercase">Min</label><input type="number" min="0" step="0.01" name="min_price" class="form-control form-control-sm" />
-                <label for="max_price" class="text-uppercase">Max</label><input type="number" min="0" step="0.01" name="max_price" class="form-control form-control-sm" />
+                <label for="min_price" class="text-uppercase">Min</label><input type="number" min="0" step="0.01"
+                    name="min_price" class="form-control form-control-sm" />
+                <label for="max_price" class="text-uppercase">Max</label><input type="number" min="0" step="0.01"
+                    name="max_price" class="form-control form-control-sm" />
                 <button type="submit" class="btn btn-sm btn-primary w-50">Apply Filter</button>
             </div>
         </form>
     </div>
 
-   
-    <?php if (woocommerce_product_loop()) : ?>
+
+    <?php if (woocommerce_product_loop()): ?>
         <div id="shop-products" class="mt-3">
             <?php
             woocommerce_product_loop_start();
@@ -67,7 +71,7 @@ if (is_product_category()) {
         <div id="shop-pagination-bottom" class="my-3">
             <?php woocommerce_pagination(); ?>
         </div>
-    <?php else : ?>
+    <?php else: ?>
         <?php do_action('woocommerce_no_products_found'); ?>
     <?php endif; ?>
 </div>
