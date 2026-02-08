@@ -47,6 +47,8 @@ jQuery(function($) {
         setTimeout(function() {
             $input.removeClass('changed');
         }, 300);
+
+        scheduleRowUpdate($btn.closest('tr'));
     });
 
     // Handle direct input validation
@@ -62,7 +64,37 @@ jQuery(function($) {
         if (val > maxVal) val = maxVal;
         
         $input.val(val).attr('value', val).prop('value', val);
+
+        scheduleRowUpdate($input.closest('tr'));
     });
+
+    function updateCartTotalsHtml(totalsHtml) {
+        if (!totalsHtml) return;
+
+        const $tempDiv = $('<div>').html(totalsHtml);
+        const $newTotals = $tempDiv.find('.cart_totals');
+        const $currentTotals = $('.cart-totals-modern .cart_totals');
+
+        if ($newTotals.length && $currentTotals.length) {
+            $currentTotals.replaceWith($newTotals);
+        } else if ($newTotals.length) {
+            $('.cart-totals-modern').html($newTotals);
+        }
+    }
+
+    function scheduleRowUpdate($row) {
+        if (!$row || !$row.length) return;
+        if (!$row.find('.btn-update-item').length) return;
+
+        const existingTimer = $row.data('updateTimer');
+        if (existingTimer) clearTimeout(existingTimer);
+
+        const timer = setTimeout(function() {
+            $row.find('.btn-update-item').trigger('click');
+        }, 350);
+
+        $row.data('updateTimer', timer);
+    }
 
     // Handle Update button click for individual items
     $(document).on('click', '.btn-update-item', function(e) {
@@ -100,20 +132,8 @@ jQuery(function($) {
                     const subtotalHtml = response.data.subtotal;
                     $row.find('.col-subtotal').html(subtotalHtml);
                     
-                    // Update cart totals - replace the entire modern wrapper
-                    if (response.data.cart_totals) {
-                        const $oldTotals = $('.cart-totals-modern');
-                        
-                        if ($oldTotals.length) {
-                            // Extract just the cart totals HTML from response
-                            const $tempDiv = $('<div>').html(response.data.cart_totals);
-                            const newTotalsHtml = $tempDiv.find('.woocommerce-cart-totals').html();
-                            
-                            if (newTotalsHtml) {
-                                $oldTotals.find('.woocommerce-cart-totals').html(newTotalsHtml);
-                            }
-                        }
-                    }
+                    // Update cart totals
+                    updateCartTotalsHtml(response.data.cart_totals);
                     
                     // Visual feedback - show success
                     $row.addClass('row-updated');
@@ -185,14 +205,7 @@ jQuery(function($) {
                     showCartToast(response.data.message || 'Coupon applied successfully!', 'success');
                     
                     // Update cart totals content only
-                    if (response.data.cart_totals) {
-                        const $tempDiv = $('<div>').html(response.data.cart_totals);
-                        const newTotalsHtml = $tempDiv.find('.woocommerce-cart-totals').html();
-                        
-                        if (newTotalsHtml) {
-                            $('.cart-totals-modern .woocommerce-cart-totals').html(newTotalsHtml);
-                        }
-                    }
+                    updateCartTotalsHtml(response.data.cart_totals);
                     
                     // Clear the valid class after 3 seconds
                     setTimeout(function() {

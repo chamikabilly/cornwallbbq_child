@@ -131,52 +131,54 @@ $completed_count = count(wc_get_orders($completed_query));
     <div class="section">
         <div class="section-title">
             <span>Recent Orders</span>
-            <a class="btn btn-sm btn-outline-secondary" href="<?php echo esc_url(wc_get_endpoint_url('orders')); ?>">See
+            <a class="btn btn-primary" href="<?php if ($is_manager): ?><?php echo esc_url(wc_get_endpoint_url('manage-orders')); ?><?php else:?><?php echo esc_url(wc_get_endpoint_url('orders')); ?><?php endif; ?>">See
                 all</a>
         </div>
-        <table class="table-modern">
-            <thead>
-                <tr>
-                    <th>Order</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $recent_orders_query = array(
-                    'limit' => 5,
-                    'orderby' => 'date',
-                    'order' => 'DESC',
-                );
-                if (!$is_manager) {
-                    $recent_orders_query['customer_id'] = $current_user_id;
-                }
-                $recent_orders = wc_get_orders($recent_orders_query);
+        <div class="table-modern-wrap">
+            <table class="table-modern">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $recent_orders_query = array(
+                        'limit' => 5,
+                        'orderby' => 'date',
+                        'order' => 'DESC',
+                    );
+                    if (!$is_manager) {
+                        $recent_orders_query['customer_id'] = $current_user_id;
+                    }
+                    $recent_orders = wc_get_orders($recent_orders_query);
 
-                if (!empty($recent_orders)):
-                    foreach ($recent_orders as $order):
-                        $status_key = 'status-' . $order->get_status();
+                    if (!empty($recent_orders)):
+                        foreach ($recent_orders as $order):
+                            $status_key = 'status-' . $order->get_status();
+                            ?>
+                            <tr>
+                                <td>#<?php echo esc_html($order->get_order_number()); ?></td>
+                                <td><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></td>
+                                <td><span
+                                        class="status-badge <?php echo esc_attr($status_key); ?>"><?php echo esc_html(wc_get_order_status_name('wc-' . $order->get_status())); ?></span>
+                                </td>
+                                <td><?php echo wp_kses_post($order->get_formatted_order_total()); ?></td>
+                            </tr>
+                            <?php
+                        endforeach;
+                    else:
                         ?>
                         <tr>
-                            <td>#<?php echo esc_html($order->get_order_number()); ?></td>
-                            <td><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></td>
-                            <td><span
-                                    class="status-badge <?php echo esc_attr($status_key); ?>"><?php echo esc_html(wc_get_order_status_name('wc-' . $order->get_status())); ?></span>
-                            </td>
-                            <td><?php echo wp_kses_post($order->get_formatted_order_total()); ?></td>
+                            <td colspan="5">No recent orders.</td>
                         </tr>
-                        <?php
-                    endforeach;
-                else:
-                    ?>
-                    <tr>
-                        <td colspan="5">No recent orders.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="section">

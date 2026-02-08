@@ -114,7 +114,7 @@ global $product;
                 <div class="col-12">
                     <!-- Product Tabs / Additional Info -->
                     <!-- Product Tabs Section (Full Width) -->
-                    <div class="product-tabs-section">
+                    <div class="product-tabs-section mb-5">
                         <?php
                         /**
                          * Expanded: woocommerce_after_single_product_summary

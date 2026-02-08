@@ -137,17 +137,19 @@ function miheli_child_theme_enqueue_styles()
 
     // My Account page styles (only on account pages)
     if (function_exists('is_account_page') && is_account_page()) {
-        wp_enqueue_style(
-            'miheli-my-account-css',
-            get_stylesheet_directory_uri() . '/assets/css/my-account.css',
-            array('bootstrap-css'),
-            _S_VERSION
-        );
 
         wp_enqueue_script(
             'miheli-logout-confirm',
             get_stylesheet_directory_uri() . '/assets/js/logout-confirm.js',
             array('jquery'),
+            _S_VERSION,
+            true
+        );
+
+        wp_enqueue_script(
+            'miheli-account-dropdown',
+            get_stylesheet_directory_uri() . '/assets/js/account-menu-dropdown.js',
+            array('bootstrap-js'),
             _S_VERSION,
             true
         );

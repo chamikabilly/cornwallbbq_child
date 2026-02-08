@@ -12,6 +12,13 @@ $current_category = '';
 if (is_product_category()) {
     $current_category = get_queried_object()->slug;
 }
+
+$filter_action_url = is_product_category()
+    ? get_term_link(get_queried_object())
+    : get_post_type_archive_link('product');
+$min_price = isset($_GET['min_price']) ? wc_clean(wp_unslash($_GET['min_price'])) : '';
+$max_price = isset($_GET['max_price']) ? wc_clean(wp_unslash($_GET['max_price'])) : '';
+$preserve_query_keys = array('orderby', 'order', 's', 'post_type');
 ?>
 <div class="container shop-archive" data-current-category="<?php echo esc_attr($current_category); ?>">
 
@@ -33,19 +40,26 @@ if (is_product_category()) {
                 }
                 ?>
             </div>
-            <div class="swiper-button-prev shop-cats-swiper-button-prev"></div>
-            <div class="swiper-button-next shop-cats-swiper-button-next"></div>
+            <div class="shop-cats-swiper-button-prev" aria-label="Previous categories"></div>
+            <div class="shop-cats-swiper-button-next" aria-label="Next categories"></div>
         </div>
 
         <!-- Price filter -->
-        <form id="shop-price-filter" class="shop-price-filter my-5 text-light">
+        <form id="shop-price-filter" class="shop-price-filter my-5 text-light" method="get"
+            action="<?php echo esc_url($filter_action_url); ?>" data-ajax="0">
             <span class="filter-label mx-2 text-uppercase"><i class="fa-solid fa-arrow-down-wide-short mx-1"></i> Price
                 Filter</span>
+            <?php foreach ($preserve_query_keys as $key): ?>
+                <?php if (isset($_GET[$key])): ?>
+                    <input type="hidden" name="<?php echo esc_attr($key); ?>"
+                        value="<?php echo esc_attr(wc_clean(wp_unslash($_GET[$key]))); ?>" />
+                <?php endif; ?>
+            <?php endforeach; ?>
             <div class="d-flex align-items-center gap-2">
                 <label for="min_price" class="text-uppercase">Min</label><input type="number" min="0" step="0.01"
-                    name="min_price" class="form-control form-control-sm" />
+                    name="min_price" class="form-control form-control-sm" value="<?php echo esc_attr($min_price); ?>" />
                 <label for="max_price" class="text-uppercase">Max</label><input type="number" min="0" step="0.01"
-                    name="max_price" class="form-control form-control-sm" />
+                    name="max_price" class="form-control form-control-sm" value="<?php echo esc_attr($max_price); ?>" />
                 <button type="submit" class="btn btn-sm btn-primary w-50">Apply Filter</button>
             </div>
         </form>

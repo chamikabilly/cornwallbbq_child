@@ -7,21 +7,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var thumbsSwiperInstance = null;
 
     if (thumbsContainer) {
+        var thumbSlideCount = thumbsContainer.querySelectorAll('.swiper-slide').length;
+        var shouldCenterThumbs = thumbSlideCount <= 1;
+
         thumbsSwiperInstance = new Swiper(thumbsContainer, {
-            slidesPerView: 1,
+            slidesPerView: 3,
             spaceBetween: 10,
+            centeredSlides: shouldCenterThumbs,
             direction: 'horizontal',
             grabCursor: true,
             watchSlidesProgress: true,
             navigation: {
-                nextEl: '.thumbs-swiper-button-next',
-                prevEl: '.thumbs-swiper-button-prev',
+                nextEl: '.thumbs-swiper .thumbs-swiper-button-next',
+                prevEl: '.thumbs-swiper .thumbs-swiper-button-prev',
             },
-            breakpoints: {
-                576: { slidesPerView: 3 },
-                768: { slidesPerView: 3 },
-                1200: { slidesPerView: 3 }
-            }
         });
 
         // Add click behavior to thumbnail images

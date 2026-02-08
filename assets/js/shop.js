@@ -8,8 +8,8 @@
       freeMode: true,
       watchOverflow: true,
       navigation: {
-        nextEl: ".shop-cats-swiper .swiper-button-next",
-        prevEl: ".shop-cats-swiper .swiper-button-prev",
+        nextEl: ".shop-cats-swiper .shop-cats-swiper-button-next",
+        prevEl: ".shop-cats-swiper .shop-cats-swiper-button-prev",
       },
     });
 
@@ -21,23 +21,32 @@
       var categorySlug = $(".shop-archive").data("current-category") || "";
       currentCategory = categorySlug;
 
-      // Remove active class from all slides
-      $(".shop-cats-swiper .swiper-slide").removeClass("active");
+      var $slides = $(".shop-cats-swiper .swiper-slide");
 
-      // Add active class to matching slide
       if (categorySlug) {
+        $slides.removeClass("active");
         $(
           '.shop-cats-swiper .swiper-slide[data-slug="' + categorySlug + '"]',
         ).addClass("active");
-      } else {
-        // If no category, activate the "All" slide
-        $('.shop-cats-swiper .swiper-slide[data-slug=""]').addClass("active");
-      }
+      } 
     }
 
     // Initialize active slide on page load
     initializeActiveSlide();
     // console.log('Initialized active slide for category:', currentCategory);
+
+    $(document).on("click", ".shop-cats-swiper .swiper-slide", function () {
+      var slug = $(this).data("slug") || "";
+      var $slides = $(".shop-cats-swiper .swiper-slide");
+
+      if (slug === "") {
+        // $slides.addClass("active");
+        $(this).addClass("active");
+      } else {
+        $slides.removeClass("active");
+        $(this).addClass("active");
+      }
+    });
 
     function applyFilters(page) {
       var $form = $("#shop-price-filter");
@@ -77,8 +86,13 @@
 
     // Category navigation handled via anchor links within slides
 
-    // Price filter submit
+    // Price filter submit (only when AJAX is enabled)
     $("#shop-price-filter").on("submit", function (e) {
+      var isAjaxEnabled = $(this).data("ajax") === 1;
+      if (!isAjaxEnabled) {
+        return;
+      }
+
       e.preventDefault();
       currentPage = 1;
       applyFilters(currentPage);
@@ -86,6 +100,10 @@
 
     // Bottom pagination: convert to AJAX with graceful fallback
     $(document).on("click", "#shop-pagination-bottom a", function (e) {
+      var isAjaxEnabled = $("#shop-price-filter").data("ajax") === 1;
+      if (!isAjaxEnabled) {
+        return;
+      }
       var href = $(this).attr("href") || "";
 
       // Extract page from common WooCommerce permalink patterns

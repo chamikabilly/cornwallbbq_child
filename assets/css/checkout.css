@@ -8,9 +8,7 @@ body.woocommerce-checkout .entry-header {
     display: none;
 }
 
-.checkout-page-wrapper {
-    padding: 0px 60px 0 100px;
-}
+
 
 .checkout-page-wrapper .container {
     background: linear-gradient(135deg, rgba(212, 163, 49, 0.08) 0%, rgba(125, 37, 37, 0.08) 100%);

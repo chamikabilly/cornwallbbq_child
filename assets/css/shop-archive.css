@@ -3,6 +3,10 @@
  * Styles for the shop archive/product listing page
  */
 
+ main#primary {
+    padding: 0px 60px 0 100px;
+}
+
 /* Category Slider Styles */
 .shop-cats-swiper {
   width: 100%;
@@ -15,16 +19,17 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  padding: 0 30px;
 }
 
 /* Hide Disabled Navigation Buttons */
-.swiper-button-prev.shop-cats-swiper-button-prev.swiper-button-disabled.swiper-button-lock,
-.swiper-button-next.shop-cats-swiper-button-next.swiper-button-disabled.swiper-button-lock {
+.shop-cats-swiper-button-prev.swiper-button-disabled.swiper-button-lock,
+.shop-cats-swiper-button-next.swiper-button-disabled.swiper-button-lock {
   display: none;
 }
 
-.swiper-button-prev.shop-cats-swiper-button-prev,
-.swiper-button-next.shop-cats-swiper-button-next {
+.shop-cats-swiper-button-prev,
+.shop-cats-swiper-button-next {
   width: 30px;
   height: 50px;
   background-color: var(--color-deep-red);
@@ -33,8 +38,8 @@
   justify-content: center;
 }
 
-.swiper-button-prev.shop-cats-swiper-button-prev svg,
-.swiper-button-next.shop-cats-swiper-button-next svg {
+.shop-cats-swiper-button-prev svg,
+.shop-cats-swiper-button-next svg {
   width: 15px;
   height: 15px;
   fill: var(--color-bright-orange);
@@ -69,8 +74,7 @@
 }
 
 /* Active Slide State */
-.shop-cats-swiper .swiper-slide.active,
-.shop-cats-swiper .swiper-slide.swiper-slide-active {
+.shop-cats-swiper .swiper-slide.active {
   background-color: #7d2525;
   border-color: #ffac42;
   color: #ffffff;
@@ -84,12 +88,12 @@
 }
 
 /* Navigation Buttons */
-.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev,
-.shop-cats-swiper .swiper-button-next.shop-cats-swiper-button-next {
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  border: none;
+.shop-cats-swiper .shop-cats-swiper-button-prev,
+.shop-cats-swiper .shop-cats-swiper-button-next {
+  width: 20px;
+  height: 48px;
+  background-color: #7d2525;
+  border: 1px solid #ffac42;
   color: #ffffff;
   transition: all 0.3s ease;
   position: absolute;
@@ -103,35 +107,39 @@
 }
 
 /* Previous Button */
-.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev {
+.shop-cats-swiper .shop-cats-swiper-button-prev {
   left: 0;
 }
 
 /* Next Button */
-.shop-cats-swiper .swiper-button-next.shop-cats-swiper-button-next {
+.shop-cats-swiper .shop-cats-swiper-button-next {
   right: 0;
 }
 
 /* Arrow Icons (Swiper default ::after) */
-.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev::after,
-.shop-cats-swiper .swiper-button-next.shop-cats-swiper-button-next::after {
+.shop-cats-swiper .shop-cats-swiper-button-prev::after,
+.shop-cats-swiper .shop-cats-swiper-button-next::after {
+  content: "<";
   font-size: 20px;
   color: #ffffff;
   font-weight: bold;
 }
 
+.shop-cats-swiper .shop-cats-swiper-button-next::after {
+  content: ">";
+}
+
 /* Arrow Hover State */
-.shop-cats-swiper .swiper-button-prev.shop-cats-swiper-button-prev:hover::after,
-.shop-cats-swiper
-  .swiper-button-next.shop-cats-swiper-button-next:hover::after {
+.shop-cats-swiper .shop-cats-swiper-button-prev:hover::after,
+.shop-cats-swiper .shop-cats-swiper-button-next:hover::after {
   color: #ffac42;
 }
 
 /* Disabled Arrow State */
 .shop-cats-swiper
-  .swiper-button-prev.shop-cats-swiper-button-prev.swiper-button-disabled::after,
+  .shop-cats-swiper-button-prev.swiper-button-disabled::after,
 .shop-cats-swiper
-  .swiper-button-next.shop-cats-swiper-button-next.swiper-button-disabled::after {
+  .shop-cats-swiper-button-next.swiper-button-disabled::after {
   color: rgba(255, 255, 255, 0.3);
 }
 
@@ -501,6 +509,10 @@
 }
 
 @media (max-width: 991px) {
+
+   main#primary {
+    padding: 0px;
+}
   #shop-products .products {
     grid-template-columns: repeat(2, 1fr);
   }

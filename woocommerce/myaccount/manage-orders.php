@@ -37,7 +37,7 @@ $orders = wc_get_orders($args);
     <div class="my-account-header">
         <div class="title">Manage Orders</div>
         <div>
-            <a class="btn btn-outline-secondary"
+            <a class="btn btn-primary"
                 href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>">Back to Dashboard</a>
         </div>
     </div>
@@ -64,56 +64,58 @@ $orders = wc_get_orders($args);
         </form>
     </div>
 
-    <table class="table-modern manage-orders-table">
-        <thead>
-            <tr>
-                <th>Order</th>
-                <th>Date</th>
-                <th>Customer</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Change Status</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($orders)): ?>
-                <?php foreach ($orders as $order):
-                    $customer_name = trim($order->get_formatted_billing_full_name());
-                    if (!$customer_name) {
-                        $customer_name = __('Guest', 'miheli');
-                    }
-                    $current_status = 'wc-' . $order->get_status();
-                    ?>
-                    <tr data-order-id="<?php echo esc_attr($order->get_id()); ?>">
-                        <td><a
-                                href="<?php echo esc_url($order->get_edit_order_url()); ?>">#<?php echo esc_html($order->get_order_number()); ?></a>
-                        </td>
-                        <td><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></td>
-                        <td><?php echo esc_html($customer_name); ?></td>
-                        <td><?php echo wp_kses_post($order->get_formatted_order_total()); ?></td>
-                        <td><span
-                                class="js-status-label"><?php echo esc_html(wc_get_order_status_name($current_status)); ?></span>
-                        </td>
-                        <td class="action-cell">
-                            <select class="form-select status-select">
-                                <?php foreach ($statuses as $key => $label): ?>
-                                    <option value="<?php echo esc_attr($key); ?>" <?php selected($current_status, $key); ?>>
-                                        <?php echo esc_html($label); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </td>
-                        <td class="action-cell">
-                            <button type="button" class="btn btn-sm btn-primary js-update-status">Update</button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
+    <div class="table-modern-wrap">
+        <table class="table-modern manage-orders-table">
+            <thead>
                 <tr>
-                    <td colspan="7">No orders found.</td>
+                    <th>Order</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Change Status</th>
+                    <th></th>
                 </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php if (!empty($orders)): ?>
+                    <?php foreach ($orders as $order):
+                        $customer_name = trim($order->get_formatted_billing_full_name());
+                        if (!$customer_name) {
+                            $customer_name = __('Guest', 'miheli');
+                        }
+                        $current_status = 'wc-' . $order->get_status();
+                        ?>
+                        <tr data-order-id="<?php echo esc_attr($order->get_id()); ?>">
+                            <td><a
+                                    href="<?php echo esc_url($order->get_edit_order_url()); ?>">#<?php echo esc_html($order->get_order_number()); ?></a>
+                            </td>
+                            <td><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></td>
+                            <td><?php echo esc_html($customer_name); ?></td>
+                            <td><?php echo wp_kses_post($order->get_formatted_order_total()); ?></td>
+                            <td><span
+                                    class="js-status-label"><?php echo esc_html(wc_get_order_status_name($current_status)); ?></span>
+                            </td>
+                            <td class="action-cell">
+                                <select class="form-select status-select">
+                                    <?php foreach ($statuses as $key => $label): ?>
+                                        <option value="<?php echo esc_attr($key); ?>" <?php selected($current_status, $key); ?>>
+                                            <?php echo esc_html($label); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td class="action-cell">
+                                <button type="button" class="btn btn-sm btn-primary js-update-status">Update</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="7">No orders found.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
