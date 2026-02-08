@@ -70,6 +70,6 @@ $post_thumbnail_id = $product->get_image_id();
 	</div>
 
 	<!-- Navigation buttons -->
-	<div class="swiper-button-next thumbs-swiper-button-next"></div>
-	<div class="swiper-button-prev thumbs-swiper-button-prev"></div>
+	<div class="thumbs-swiper-button-next" aria-label="Next thumbnails"></div>
+	<div class="thumbs-swiper-button-prev" aria-label="Previous thumbnails"></div>
 </div>

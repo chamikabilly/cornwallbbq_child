@@ -23,11 +23,7 @@
   position: relative;
   left: 1%;
   transform: none;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.14) 100%
-  );
+  background: linear-gradient(180deg, rgb(255 255 255 / 34%) 0%, rgb(255 255 255 / 58%) 100%);
   border-radius: 22px;
   border: 2px solid rgba(255, 255, 255, 0.85);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
@@ -158,6 +154,12 @@
   border-radius: 14px;
   overflow: hidden;
   box-shadow: var(--ma-shadow);
+}
+
+.table-modern-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .table-modern th,
@@ -329,7 +331,7 @@
 }
 
 /* Manage Orders admin table */
-.manage-orders-toolbar {
+.manage-orders-toolbar form {
   display: flex;
   gap: 0.75rem;
   align-items: center;

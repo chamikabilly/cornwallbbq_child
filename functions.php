@@ -49,7 +49,7 @@ function miheli_child_theme_enqueue_styles()
     wp_enqueue_script(
         'miheli-shop-js',
         get_stylesheet_directory_uri() . '/assets/js/shop.js',
-        array('jquery', 'meheli-swiper-js'), // Add jQuery and Swiper as dependencies
+        array('jquery', 'swiper-js'), // Ensure Swiper loads before shop.js
         _S_VERSION,
         true
     );
@@ -137,12 +137,6 @@ function miheli_child_theme_enqueue_styles()
 
     // My Account page styles (only on account pages)
     if (function_exists('is_account_page') && is_account_page()) {
-        wp_enqueue_style(
-            'miheli-my-account-css',
-            get_stylesheet_directory_uri() . '/assets/css/my-account.css',
-            array('bootstrap-css'),
-            _S_VERSION
-        );
 
         wp_enqueue_script(
             'miheli-logout-confirm',
@@ -152,10 +146,33 @@ function miheli_child_theme_enqueue_styles()
             true
         );
 
+        wp_enqueue_script(
+            'miheli-account-dropdown',
+            get_stylesheet_directory_uri() . '/assets/js/account-menu-dropdown.js',
+            array('bootstrap-js'),
+            _S_VERSION,
+            true
+        );
+
         wp_localize_script('miheli-logout-confirm', 'miheliLogoutConfirm', array(
             'message' => __('Are you sure you want to log out? Confirm and log out.', 'miheli')
         ));
 
+        // Manage Orders interactions (only on manage-orders endpoint)
+        $is_manage_orders = get_query_var('manage-orders', null) !== null;
+        if ($is_manage_orders) {
+            wp_enqueue_script(
+                'miheli-manage-orders',
+                get_stylesheet_directory_uri() . '/assets/js/manage-orders.js',
+                array('jquery'),
+                _S_VERSION,
+                true
+            );
+            wp_localize_script('miheli-manage-orders', 'miheliManageOrders', array(
+                'ajaxurl' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('miheli_update_order_status')
+            ));
+        }
     }
 }
 add_action('wp_enqueue_scripts', 'miheli_child_theme_enqueue_styles');
@@ -207,7 +224,8 @@ add_action('wp_loaded', 'miheli_override_woocommerce_templates');
 /**
  * Locate WooCommerce templates from child theme first
  */
-function miheli_locate_woocommerce_template($template, $template_name, $template_path) {
+function miheli_locate_woocommerce_template($template, $template_name, $template_path)
+{
     if (is_cart() || is_checkout()) {
         $is_cart_template = strpos($template_name, 'cart') !== false;
         $is_checkout_template = strpos($template_name, 'checkout') !== false;
@@ -229,7 +247,8 @@ function miheli_locate_woocommerce_template($template, $template_name, $template
  * Force classic checkout template when the checkout block is used
  * so the child theme template (form-checkout.php) renders.
  */
-function miheli_force_classic_checkout_content($content) {
+function miheli_force_classic_checkout_content($content)
+{
     if (!function_exists('is_checkout') || !is_checkout() || is_admin()) {
         return $content;
     }
@@ -395,8 +414,7 @@ function miheli_account_actions_header()
             <div class="account-actions-inline">
                 <a class="btn btn-primary"
                     href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>"><?php echo esc_html__('Dashboard', 'miheli'); ?></a>
-                <a class="btn btn-primary"
-                    href="<?php echo esc_url(wc_get_endpoint_url('orders')); ?>"><?php echo esc_html__('View Orders', 'miheli'); ?></a>
+
                 <a class="btn btn-primary"
                     href="<?php echo esc_url(wc_get_endpoint_url('edit-account')); ?>"><?php echo esc_html__('Account Details', 'miheli'); ?></a>
                 <a class="btn btn-primary js-confirm-logout"
@@ -411,13 +429,11 @@ function miheli_account_actions_header()
                     <li><a class="dropdown-item"
                             href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>"><?php echo esc_html__('Dashboard', 'miheli'); ?></a>
                     </li>
-                    <li><a class="dropdown-item"
-                            href="<?php echo esc_url(wc_get_endpoint_url('orders')); ?>"><?php echo esc_html__('View Orders', 'miheli'); ?></a>
-                    </li>
+
                     <li><a class="dropdown-item"
                             href="<?php echo esc_url(wc_get_endpoint_url('edit-account')); ?>"><?php echo esc_html__('Account Details', 'miheli'); ?></a>
                     </li>
-                        <li><a class="dropdown-item js-confirm-logout"
+                    <li><a class="dropdown-item js-confirm-logout"
                             href="<?php echo esc_url(wc_logout_url()); ?>"><?php echo esc_html__('Log out', 'miheli'); ?></a>
                     </li>
                 </ul>
@@ -555,3 +571,17 @@ function miheli_apply_coupon_ajax()
 }
 add_action('wp_ajax_apply_coupon', 'miheli_apply_coupon_ajax');
 add_action('wp_ajax_nopriv_apply_coupon', 'miheli_apply_coupon_ajax');
+
+function miheli_loop_shop_per_page($cols)
+{
+    return 9;
+}
+add_filter('loop_shop_per_page', 'miheli_loop_shop_per_page', 20);
+
+function miheli_adjust_products_per_page($query)
+{
+    if (!is_admin() && $query->is_main_query() && (is_shop() || is_product_taxonomy())) {
+        $query->set('posts_per_page', 9);
+    }
+}
+add_action('pre_get_posts', 'miheli_adjust_products_per_page', 9);
