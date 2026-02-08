@@ -1286,6 +1286,11 @@ input[type="number"].qty {
     .modern-cart-toast {
         min-width: 300px;
     }
+
+    .product-hover-actions {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 575px) {

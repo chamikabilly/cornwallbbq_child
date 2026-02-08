@@ -148,6 +148,7 @@ global $product;
                     foreach ($related_products as $related_product_id) :
                         $related_product = wc_get_product($related_product_id);
                         if (!$related_product) continue;
+                        $related_has_price = $related_product->get_price() !== '' && $related_product->get_price() !== null;
                 ?>
                         <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
 
@@ -157,10 +158,12 @@ global $product;
                                     <div class="product-img-holder ">
                                         <?php echo $related_product->get_image('woocommerce_thumbnail'); ?>
                                         <div class="product-hover-actions">
-                                            <button class="add-to-cart-btn" data-product-id="<?php echo $related_product_id; ?>"
-                                                data-is-variable="<?php echo $related_product->is_type('variable') ? 'true' : 'false'; ?>">
-                                                <i class="fa-solid fa-cart-plus"></i>
-                                            </button>
+                                            <?php if ($related_has_price) : ?>
+                                                <button class="add-to-cart-btn" data-product-id="<?php echo $related_product_id; ?>"
+                                                    data-is-variable="<?php echo $related_product->is_type('variable') ? 'true' : 'false'; ?>">
+                                                    <i class="fa-solid fa-cart-plus"></i>
+                                                </button>
+                                            <?php endif; ?>
                                             <a href="<?php echo esc_url($related_product->get_permalink()); ?>" class="quick-view-btn">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>

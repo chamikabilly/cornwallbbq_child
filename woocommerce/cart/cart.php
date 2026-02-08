@@ -233,6 +233,7 @@ do_action('woocommerce_before_cart');
                                         while ($products->have_posts()) : $products->the_post();
                                             global $product;
                                             $product_id = $product->get_id();
+                                            $has_price = $product->get_price() !== '' && $product->get_price() !== null;
                                             ?>
                                             <div class="col-xl-3 col-lg-4 col-md-6">
                                                 <div class="miheli-product-inner">
@@ -240,10 +241,12 @@ do_action('woocommerce_before_cart');
                                                         <div class="product-img-holder">
                                                             <?php echo $product->get_image('woocommerce_thumbnail'); ?>
                                                             <div class="product-hover-actions">
-                                                                <button class="add-to-cart-btn" data-product-id="<?php echo $product_id; ?>"
-                                                                    data-is-variable="<?php echo $product->is_type('variable') ? 'true' : 'false'; ?>">
-                                                                    <i class="fa-solid fa-cart-plus"></i>
-                                                                </button>
+                                                                <?php if ($has_price) : ?>
+                                                                    <button class="add-to-cart-btn" data-product-id="<?php echo $product_id; ?>"
+                                                                        data-is-variable="<?php echo $product->is_type('variable') ? 'true' : 'false'; ?>">
+                                                                        <i class="fa-solid fa-cart-plus"></i>
+                                                                    </button>
+                                                                <?php endif; ?>
                                                                 <a href="<?php echo esc_url($product->get_permalink()); ?>" class="quick-view-btn">
                                                                     <i class="fa-solid fa-eye"></i>
                                                                 </a>
