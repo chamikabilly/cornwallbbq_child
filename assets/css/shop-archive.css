@@ -529,6 +529,11 @@
     height: 180px;
     width: 180px;
   }
+
+  .product-hover-actions {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
