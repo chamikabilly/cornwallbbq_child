@@ -240,8 +240,6 @@
 .miheli-product-inner .product-container .product-img-holder {
   height: 190px;
   width: 190px;
-  object-fit: cover;
-  object-position: center;
   background: transparent;
   margin: 30px auto;
 }
