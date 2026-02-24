@@ -275,7 +275,7 @@
 }
 
 /* Flexify columns instead of grid */
-.woocommerce-account .col-md-6 {
+.woocommerce-account.woocommerce-MyAccount-content.col-md-6 {
   flex: 1 1 calc(50% - 0.5rem);
   max-width: 50%;
 }
