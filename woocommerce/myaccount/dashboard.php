@@ -20,7 +20,7 @@ $last_order_query = array(
     'type' => 'shop_order',
     'limit' => 1,
     'orderby' => 'date',
-    'order' => 'DESC',
+    'order'   => 'DESC',
 );
 if (!$is_manager) {
     $last_order_query['customer_id'] = $current_user_id;
@@ -32,8 +32,9 @@ $last_status = $last_order ? wc_get_order_status_name('wc-' . $last_order->get_s
 $processing_query = array(
     'type' => 'shop_order',
     'status' => array('wc-processing', 'wc-on-hold'),
-    'limit' => -1,
+    'limit'  => -1,
     'return' => 'ids',
+    'type'   => 'shop_order',
 );
 if (!$is_manager) {
     $processing_query['customer_id'] = $current_user_id;
@@ -43,8 +44,9 @@ $processing_count = count(wc_get_orders($processing_query));
 $pending_query = array(
     'type' => 'shop_order',
     'status' => array('wc-pending'),
-    'limit' => -1,
+    'limit'  => -1,
     'return' => 'ids',
+    'type'   => 'shop_order',
 );
 if (!$is_manager) {
     $pending_query['customer_id'] = $current_user_id;
@@ -54,8 +56,9 @@ $pending_count = count(wc_get_orders($pending_query));
 $completed_query = array(
     'type' => 'shop_order',
     'status' => array('wc-completed'),
-    'limit' => -1,
+    'limit'  => -1,
     'return' => 'ids',
+    'type'   => 'shop_order',
 );
 if (!$is_manager) {
     $completed_query['customer_id'] = $current_user_id;
