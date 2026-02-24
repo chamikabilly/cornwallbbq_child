@@ -113,6 +113,9 @@ $completed_count = count(wc_get_orders($completed_query));
                 <div class="value"><?php echo esc_html($total_orders); ?></div>
             </div>
         </div>
+        <?php 
+          if (!$is_manager) {
+        ?>
         <div class="card-kpi">
             <div class="icon" style="background:#fdf2f8;color:#9d174d"><i class="fa-solid fa-sterling-sign"></i></div>
             <div class="meta">
@@ -120,6 +123,7 @@ $completed_count = count(wc_get_orders($completed_query));
                 <div class="value"><?php echo wp_kses_post(wc_price($total_spent)); ?></div>
             </div>
         </div>
+        <?php } ?>
         <div class="card-kpi">
             <div class="icon" style="background:#f0fdf4;color:#166534"><i class="fa-solid fa-clipboard-check"></i></div>
             <div class="meta">
