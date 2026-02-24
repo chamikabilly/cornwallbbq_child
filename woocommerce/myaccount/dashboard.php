@@ -12,11 +12,12 @@ if (!defined('ABSPATH')) {
 $current_user_id = get_current_user_id();
 $is_manager = current_user_can('edit_shop_orders') || current_user_can('manage_woocommerce');
 $total_orders = $is_manager
-    ? count(wc_get_orders(array('return' => 'ids', 'limit' => -1)))
+    ? count(wc_get_orders(array('type' => 'shop_order', 'return' => 'ids', 'limit' => -1)))
     : (function_exists('wc_get_customer_order_count') ? wc_get_customer_order_count($current_user_id) : 0);
 $total_spent = function_exists('wc_get_customer_total_spent') ? wc_get_customer_total_spent($current_user_id) : 0;
 
 $last_order_query = array(
+    'type' => 'shop_order',
     'limit' => 1,
     'orderby' => 'date',
     'order' => 'DESC',
@@ -29,6 +30,7 @@ $last_order = !empty($last_order_arr) ? $last_order_arr[0] : false;
 $last_status = $last_order ? wc_get_order_status_name('wc-' . $last_order->get_status()) : __('No orders yet', 'miheli');
 
 $processing_query = array(
+    'type' => 'shop_order',
     'status' => array('wc-processing', 'wc-on-hold'),
     'limit' => -1,
     'return' => 'ids',
@@ -39,6 +41,7 @@ if (!$is_manager) {
 $processing_count = count(wc_get_orders($processing_query));
 
 $pending_query = array(
+    'type' => 'shop_order',
     'status' => array('wc-pending'),
     'limit' => -1,
     'return' => 'ids',
@@ -49,6 +52,7 @@ if (!$is_manager) {
 $pending_count = count(wc_get_orders($pending_query));
 
 $completed_query = array(
+    'type' => 'shop_order',
     'status' => array('wc-completed'),
     'limit' => -1,
     'return' => 'ids',
@@ -131,7 +135,8 @@ $completed_count = count(wc_get_orders($completed_query));
     <div class="section">
         <div class="section-title">
             <span>Recent Orders</span>
-            <a class="btn btn-primary" href="<?php if ($is_manager): ?><?php echo esc_url(wc_get_endpoint_url('manage-orders')); ?><?php else:?><?php echo esc_url(wc_get_endpoint_url('orders')); ?><?php endif; ?>">See
+            <a class="btn btn-primary"
+                href="<?php if ($is_manager): ?><?php echo esc_url(wc_get_endpoint_url('manage-orders')); ?><?php else: ?><?php echo esc_url(wc_get_endpoint_url('orders')); ?><?php endif; ?>">See
                 all</a>
         </div>
         <div class="table-modern-wrap">
@@ -147,6 +152,7 @@ $completed_count = count(wc_get_orders($completed_query));
                 <tbody>
                     <?php
                     $recent_orders_query = array(
+                        'type' => 'shop_order',
                         'limit' => 5,
                         'orderby' => 'date',
                         'order' => 'DESC',
