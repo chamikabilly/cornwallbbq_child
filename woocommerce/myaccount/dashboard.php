@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
+
 $current_user_id = get_current_user_id();
 $is_manager = current_user_can('edit_shop_orders') || current_user_can('manage_woocommerce');
 $total_orders = $is_manager
