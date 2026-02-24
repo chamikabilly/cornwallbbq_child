@@ -1,0 +1,313 @@
+.miheli-orderdetails-page {
+  --od-primary: var(--bs-primary);
+  --od-primary-rgb: var(--bs-primary-rgb);
+  --od-success: var(--bs-success);
+  --od-success-rgb: var(--bs-success-rgb);
+  --od-warning: var(--bs-warning);
+  --od-warning-rgb: var(--bs-warning-rgb);
+  --od-muted: #6b7280;
+  --od-card-bg: #ffffff;
+  --od-card-border: #eaeaea;
+  --od-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  max-width: 1243px;
+  margin: 1.25rem auto 3rem;
+  padding: 1.25rem;
+  background: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 34%) 0%,
+    rgb(255 255 255 / 58%) 100%
+  );
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+}
+
+.miheli-orderdetails-header {
+  margin-bottom: 1.25rem;
+}
+
+.miheli-orderdetails-title {
+  margin: 0 0 6px;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.miheli-orderdetails-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.miheli-orderdetails-page .woocommerce-notice,
+.miheli-orderdetails-page .woocommerce-message,
+.miheli-orderdetails-page .woocommerce-error,
+.miheli-orderdetails-page .woocommerce-info {
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.miheli-orderdetails-page .woocommerce-thankyou-order-failed-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.miheli-orderdetails-page .woocommerce-thankyou-order-failed-actions .button {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  padding: 0.55rem 1rem;
+}
+
+.miheli-orderdetails-page
+  .woocommerce-thankyou-order-failed-actions
+  .button:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.miheli-orderdetails-page .woocommerce-thankyou-order-details {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.woocommerce ul.order_details li {
+  float: left;
+  margin-right: 2em;
+  text-transform: uppercase;
+  font-size: 0.715em;
+  line-height: 1;
+  border-right: 1px dashed #cfc8d8;
+  padding-right: 2em;
+  list-style-type: none;
+}
+
+.miheli-orderdetails-page .woocommerce-thankyou-order-details strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: #111827;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.miheli-orderdetails-page .woocommerce-order-details,
+.miheli-orderdetails-page .woocommerce-customer-details {
+  margin-top: 1.1rem;
+  padding: 1rem;
+  background: var(--od-card-bg);
+  border: 1px solid var(--od-card-border);
+  border-radius: 14px;
+  box-shadow: var(--od-shadow);
+}
+
+.miheli-orderdetails-page .woocommerce-order-details__title,
+.miheli-orderdetails-page .woocommerce-column__title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #111827;
+  font-weight: 800;
+}
+
+.miheli-orderdetails-page .woocommerce-order-details p,
+.miheli-orderdetails-page .woocommerce-order-details small,
+.miheli-orderdetails-page .woocommerce-customer-details p,
+.miheli-orderdetails-page .woocommerce-customer-details small {
+  color: #374151;
+}
+
+.miheli-orderdetails-page .woocommerce-table {
+  margin-bottom: 0;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.miheli-orderdetails-page .woocommerce-table th,
+.miheli-orderdetails-page .woocommerce-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.miheli-orderdetails-page .woocommerce-table thead th {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--od-muted);
+  background: #fafafa;
+}
+
+.miheli-orderdetails-page .woocommerce-table tbody td,
+.miheli-orderdetails-page .woocommerce-table tbody th {
+  color: #111827;
+}
+
+.miheli-orderdetails-page .woocommerce-table tbody td a {
+  color: var(--od-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.miheli-orderdetails-page .woocommerce-table tbody td a:hover {
+  text-decoration: underline;
+}
+
+.miheli-orderdetails-page .woocommerce-table tfoot tr:last-child td,
+.miheli-orderdetails-page .woocommerce-table tfoot tr:last-child th {
+  border-bottom: 0;
+}
+
+.miheli-orderdetails-page .woocommerce-table tfoot td,
+.miheli-orderdetails-page .woocommerce-table tfoot th {
+  color: #111827;
+  font-weight: 700;
+}
+
+.miheli-orderdetails-page .woocommerce-table tfoot tr.order-total td,
+.miheli-orderdetails-page .woocommerce-table tfoot tr.order-total th,
+.miheli-orderdetails-page .woocommerce-Price-amount {
+  color: var(--od-warning);
+}
+
+.miheli-orderdetails-page .woocommerce-order-overview__payment-method strong {
+  color: #0f172a;
+}
+
+.miheli-orderdetails-page .woocommerce-order-overview__order strong {
+  color: var(--od-primary);
+}
+
+.miheli-orderdetails-page .woocommerce-order-overview__payment-method strong,
+.miheli-orderdetails-page .woocommerce-order-overview__date strong,
+.miheli-orderdetails-page .woocommerce-order-overview__email strong {
+  font-size: 1rem;
+}
+
+.miheli-orderdetails-page .woocommerce-customer-details address {
+  margin: 0;
+  line-height: 1.6;
+  color: #374151;
+}
+
+.miheli-orderdetails-page a {
+  color: #ffffff;
+}
+
+.miheli-orderdetails-page a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1400px) {
+  .miheli-orderdetails-page {
+    max-width: 1081px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .miheli-orderdetails-page {
+    max-width: 900px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .miheli-orderdetails-page {
+    max-width: 720px;
+    padding: 0.95rem;
+  }
+
+  .miheli-orderdetails-page .woocommerce-thankyou-order-details {
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .miheli-orderdetails-title {
+    font-size: 1.6rem;
+  }
+
+  .miheli-orderdetails-page {
+    padding: 0.9rem;
+    max-width: 540px;
+    border-radius: 16px;
+  }
+
+  .miheli-orderdetails-page .woocommerce-thankyou-order-details {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .miheli-orderdetails-page .woocommerce-table th,
+  .miheli-orderdetails-page .woocommerce-table td {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .miheli-orderdetails-page .woocommerce-thankyou-order-details li {
+    margin-right: 0;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .miheli-orderdetails-page {
+    padding: 0.8rem;
+    max-width: 529px;
+  }
+
+  .miheli-orderdetails-title {
+    font-size: 1.4rem;
+  }
+
+  .miheli-orderdetails-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .miheli-orderdetails-page .woocommerce-order-details,
+  .miheli-orderdetails-page .woocommerce-customer-details {
+    padding: 0.85rem;
+  }
+
+  .miheli-orderdetails-page .woocommerce-table {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 414px) {
+  .miheli-orderdetails-page {
+    padding: 0.7rem;
+    border-radius: 14px;
+    max-width: 373px;
+  }
+
+  .miheli-orderdetails-title {
+    font-size: 1.25rem;
+  }
+
+  .miheli-orderdetails-page .woocommerce-thankyou-order-details li {
+    width: 100%;
+    border-right: 0;
+    margin-right: 0;
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  .miheli-orderdetails-page .woocommerce-table th,
+  .miheli-orderdetails-page .woocommerce-table td {
+    padding: 0.6rem 0.55rem;
+  }
+}
