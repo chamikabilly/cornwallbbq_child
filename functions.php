@@ -135,6 +135,20 @@ function miheli_child_theme_enqueue_styles()
         );
     }
 
+    // Order details styles (checkout/order received + my account order view)
+    $is_view_order = function_exists('is_wc_endpoint_url') && is_wc_endpoint_url('view-order');
+    if (is_checkout() || $is_view_order) {
+        $orderdetails_css_path = get_stylesheet_directory() . '/assets/css/orderdetails.css';
+        $orderdetails_css_version = file_exists($orderdetails_css_path) ? filemtime($orderdetails_css_path) : _S_VERSION;
+
+        wp_enqueue_style(
+            'miheli-orderdetails-css',
+            get_stylesheet_directory_uri() . '/assets/css/orderdetails.css',
+            array('miheli-child-custom-css'),
+            $orderdetails_css_version
+        );
+    }
+
     // My Account page styles (only on account pages)
     if (function_exists('is_account_page') && is_account_page()) {
 
@@ -189,17 +203,17 @@ function miheli_child_theme_setup()
     add_theme_support('wc-product-gallery-zoom');
     add_theme_support('wc-product-gallery-lightbox');
     add_theme_support('wc-product-gallery-slider');
-    // Register a custom single product image size used by the gallery
-    add_image_size('miheli-single-product', 1000, 1000, true);
+    // Register a custom single product image size used by the gallery (uncropped)
+    add_image_size('miheli-single-product', 1000, 0, false);
 }
 add_action('after_setup_theme', 'miheli_child_theme_setup');
 
 /**
- * Use the custom image size for the WooCommerce gallery images
+ * Use uncropped source image for WooCommerce main gallery image
  */
 function miheli_gallery_image_size()
 {
-    return 'miheli-single-product';
+    return 'full';
 }
 add_filter('woocommerce_gallery_image_size', 'miheli_gallery_image_size');
 
@@ -209,15 +223,8 @@ add_filter('woocommerce_gallery_image_size', 'miheli_gallery_image_size');
  */
 function miheli_override_woocommerce_templates()
 {
-    // Only load on WooCommerce pages
-    if (!function_exists('is_woocommerce') || !is_woocommerce()) {
-        return;
-    }
-
-    // For cart and checkout pages, ensure child templates load first
-    if (is_cart() || is_checkout()) {
-        add_filter('woocommerce_locate_template', 'miheli_locate_woocommerce_template', 10, 3);
-    }
+    // Always enable child-template lookup so thank-you endpoint cannot skip override
+    add_filter('woocommerce_locate_template', 'miheli_locate_woocommerce_template', 10, 3);
 }
 add_action('wp_loaded', 'miheli_override_woocommerce_templates');
 
@@ -226,6 +233,13 @@ add_action('wp_loaded', 'miheli_override_woocommerce_templates');
  */
 function miheli_locate_woocommerce_template($template, $template_name, $template_path)
 {
+    if ($template_name === 'checkout/thankyou.php') {
+        $order_details_template = get_stylesheet_directory() . '/woocommerce/checkout/orderdetails.php';
+        if (file_exists($order_details_template)) {
+            return $order_details_template;
+        }
+    }
+
     if (is_cart() || is_checkout()) {
         $is_cart_template = strpos($template_name, 'cart') !== false;
         $is_checkout_template = strpos($template_name, 'checkout') !== false;
