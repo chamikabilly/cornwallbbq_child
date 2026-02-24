@@ -15,11 +15,11 @@
  * @version     9.8.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 global $product;
 
-$attachment_ids   = $product->get_gallery_image_ids();
+$attachment_ids = $product->get_gallery_image_ids();
 $post_thumbnail_id = $product->get_image_id();
 
 ?>
@@ -28,40 +28,32 @@ $post_thumbnail_id = $product->get_image_id();
 	<div class="swiper-wrapper">
 		<?php
 		// Always include the main product image as the first thumbnail so it can be restored
-		if ( $post_thumbnail_id ) {
-			$main_thumb_url = wp_get_attachment_image_url( $post_thumbnail_id, 'thumbnail' );
-			$main_full_url  = wp_get_attachment_image_url( $post_thumbnail_id, 'full' );
-			$main_alt       = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true );
+		if ($post_thumbnail_id) {
+			$main_thumb_url = wp_get_attachment_image_url($post_thumbnail_id, 'medium');
+			$main_full_url = wp_get_attachment_image_url($post_thumbnail_id, 'full');
+			$main_alt = get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true);
 			?>
 			<div class="swiper-slide product-thumb active">
-				<img
-					src="<?php echo esc_url( $main_thumb_url ); ?>"
-					data-large-image="<?php echo esc_url( $main_full_url ); ?>"
-					alt="<?php echo esc_attr( $main_alt ); ?>"
-					class="woocommerce-thumb-swiper"
-				/>
+				<img src="<?php echo esc_url($main_thumb_url); ?>" data-large-image="<?php echo esc_url($main_full_url); ?>"
+					alt="<?php echo esc_attr($main_alt); ?>" class="woocommerce-thumb-swiper" />
 			</div>
 			<?php
 		}
 
-		if ( $attachment_ids ) {
-			foreach ( $attachment_ids as $attachment_id ) {
+		if ($attachment_ids) {
+			foreach ($attachment_ids as $attachment_id) {
 				// Skip if this attachment is the main product image to avoid duplicate
-				if ( $post_thumbnail_id && intval( $attachment_id ) === intval( $post_thumbnail_id ) ) {
+				if ($post_thumbnail_id && intval($attachment_id) === intval($post_thumbnail_id)) {
 					continue;
 				}
 
-				$thumbnail_url = wp_get_attachment_image_url( $attachment_id, 'thumbnail' );
-				$full_url      = wp_get_attachment_image_url( $attachment_id, 'full' );
-				$alt_text      = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+				$thumbnail_url = wp_get_attachment_image_url($attachment_id, 'medium');
+				$full_url = wp_get_attachment_image_url($attachment_id, 'full');
+				$alt_text = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
 				?>
 				<div class="swiper-slide product-thumb">
-					<img
-						src="<?php echo esc_url( $thumbnail_url ); ?>"
-						data-large-image="<?php echo esc_url( $full_url ); ?>"
-						alt="<?php echo esc_attr( $alt_text ); ?>"
-						class="woocommerce-thumb-swiper"
-					/>
+					<img src="<?php echo esc_url($thumbnail_url); ?>" data-large-image="<?php echo esc_url($full_url); ?>"
+						alt="<?php echo esc_attr($alt_text); ?>" class="woocommerce-thumb-swiper" />
 				</div>
 				<?php
 			}
