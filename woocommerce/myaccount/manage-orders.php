@@ -18,6 +18,7 @@ $limit = isset($_GET['limit']) ? max(5, intval($_GET['limit'])) : 20;
 $status_filter = isset($_GET['status']) ? sanitize_text_field($_GET['status']) : '';
 
 $args = array(
+    'type' => 'shop_order',
     'limit' => $limit,
     'orderby' => 'date',
     'order' => 'DESC',
@@ -37,8 +38,8 @@ $orders = wc_get_orders($args);
     <div class="my-account-header">
         <div class="title">Manage Orders</div>
         <div>
-            <a class="btn btn-primary"
-                href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>">Back to Dashboard</a>
+            <a class="btn btn-primary" href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>">Back to
+                Dashboard</a>
         </div>
     </div>
 
@@ -80,6 +81,10 @@ $orders = wc_get_orders($args);
             <tbody>
                 <?php if (!empty($orders)): ?>
                     <?php foreach ($orders as $order):
+                        if (!($order instanceof WC_Order) || $order->get_type() !== 'shop_order') {
+                            continue;
+                        }
+
                         $customer_name = trim($order->get_formatted_billing_full_name());
                         if (!$customer_name) {
                             $customer_name = __('Guest', 'miheli');
